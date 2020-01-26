@@ -1,0 +1,10 @@
+test/
+bin/
+bioseqdb/
+build/
+required-for-build/
+runpsipred
+runpsipred_single
+
+.DS_Store
+
