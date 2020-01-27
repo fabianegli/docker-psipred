@@ -12,20 +12,15 @@
 #
 # © 2019 Fabian Egli <https://github.com/fabianegli>
 ############################################################
-FROM ubuntu:18.04 as blastbuild
+FROM alpine:latest as blastbuild
 
 ################## BEGIN INSTALLATION ######################
 # tcsh is required by the runpsipred and runpsipred_single scripts.
-# vim is not necessary, but convenient for interactive troubleshooting
-RUN apt-get -y update \
-  && apt-get -y upgrade \
-  && apt-get install -y apt-utils \
-  && apt-get -y autoremove \
-  && apt-get -y install wget \
-  && apt-get -y install curl \
-  && apt-get -y install build-essential \
-  && apt-get -y install tcsh \
-  && apt-get -y install vim
+RUN apk update && apk upgrade \
+  && apk add gcc \
+  && apk add libc-dev \
+  && apk add make \
+  && apk add tcsh
 
 ADD blast-2.2.26-x64-linux.tar.gz /
 # Add blast binaries to path
