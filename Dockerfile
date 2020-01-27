@@ -10,7 +10,8 @@
 # To use the date for the data
 # --mount type=bind,source="$(pwd)"/data,target=/data
 #
-# © 2019 Fabian Egli <https://github.com/fabianegli>
+# © 2020 Fabian Egli <https://github.com/fabianegli>
+# License: GNU GENERAL PUBLIC LICENSE Version 3 or any later version
 ############################################################
 FROM alpine:latest as blastbuild
 
