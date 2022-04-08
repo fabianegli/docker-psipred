@@ -2,9 +2,8 @@ test/
 bin/
 bioseqdb/
 build/
-required-for-build/
+requirements/
 runpsipred
 runpsipred_single
 
 .DS_Store
-

@@ -39,17 +39,19 @@ PREFIX_PREDICTIONS ?= $(HOME)/predictions
 
 SCRIPT_HEADER = \#!/usr/bin/env bash\n\#\n\# $$PD_TOOL - a wrapper script for invoking $$PD_TOOL from within a Docker image\n\#\n\# @2020 Fabian Egli\n\# License: GNU GENERAL PUBLIC LICENSE Version 3 or any later version\n
 
+REQUIREMENTS_DIR = requirements
+
 build: pull runner
 	@mkdir -p build
-	@cp required-for-build/psipred.4.02.tar.gz build
-	@cp required-for-build/blast-2.2.26-x64-linux.tar.gz build
+	@cp ./$(REQUIREMENTS_DIR)/psipred.4.02.tar.gz build
+	@cp ./$(REQUIREMENTS_DIR)/blast-2.2.26-x64-linux.tar.gz build
 	@cp Dockerfile build
 	@cd build && docker build -t $(IMAGE_NAME) .
 
 pull:
-	@mkdir -p required-for-build
-	@wget -c -N http://bioinfadmin.cs.ucl.ac.uk/downloads/psipred/psipred.4.02.tar.gz -P required-for-build
-	@wget -c -N ftp://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz -P required-for-build
+	@mkdir -p $(REQUIREMENTS_DIR)
+	@wget -c -N http://bioinfadmin.cs.ucl.ac.uk/downloads/psipred/psipred.4.02.tar.gz -P $(REQUIREMENTS_DIR)
+	@wget -c -N ftp://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz -P $(REQUIREMENTS_DIR)
 
 runner:
 	@echo "Writing wrapper scipts:"
@@ -72,7 +74,7 @@ clean:
 	rm $(PD_TOOLS)
 
 removedsrc:
-	rm -r required-for-build
+	rm -r $(REQUIREMENTS_DIR)
 
 install:
 	@mkdir -p $(PREFIX)
