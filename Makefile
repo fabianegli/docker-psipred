@@ -5,6 +5,9 @@
 # License: GNU GENERAL PUBLIC LICENSE Version 3 or any later version  #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+.PHONY: pull removesrc build test clean install uninstall download \
+	      blastdb removedb installdb uninstalldb help tabularasa
+
 help:
 	@echo " pull            Retrieves all requirements for the build."
 	@echo " removesrc       Removes downloaded source files."
